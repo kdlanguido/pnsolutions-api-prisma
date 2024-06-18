@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, 
 import { ApplicantService } from "./applicant.service";
 import { Applicants } from "./applicants.model";
 import { applicantSchema } from "./applicant.schema";
+import { ValidationSequence } from "src/utils/HttpValidate";
 
 @Controller('api/v1/applicants')
 export class ApplicantsController {
@@ -28,7 +29,7 @@ export class ApplicantsController {
 
     @Post()
     async postApplicant(@Body() postData: Applicants) {
-        return this.handleService(async () => {
+        return ValidationSequence(async () => {
             const validatedData = await applicantSchema.validateAsync(postData);
             await this.applicantService.createApplicant(validatedData);
             return {
@@ -40,7 +41,7 @@ export class ApplicantsController {
 
     @Put(':id')
     async updateApplicant(@Param('id') id: number, @Body() postData: Applicants) {
-        return this.handleService(async () => {
+        return ValidationSequence(async () => {
             const validatedData = await applicantSchema.validateAsync(postData);
             await this.applicantService.updateApplicant(id, validatedData);
             return {
@@ -48,20 +49,5 @@ export class ApplicantsController {
                 message: 'Applicant updated successfully',
             };
         });
-    }
-
-    private async handleService(operation: () => Promise<any>) {
-        try {
-            return await operation();
-        } catch (error) {
-            throw new HttpException(
-                {
-                    statusCode: HttpStatus.BAD_REQUEST,
-                    message: 'Validation failed',
-                    error: error.details ? error.details[0].message : error.message,
-                },
-                HttpStatus.BAD_REQUEST,
-            );
-        }
     }
 }

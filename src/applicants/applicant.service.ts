@@ -18,7 +18,7 @@ export class ApplicantService {
 
     async createApplicant(data: Applicants): Promise<Applicants> {
         return this.prisma.applicants.create({
-            data,
+            data
         })
     }
 
