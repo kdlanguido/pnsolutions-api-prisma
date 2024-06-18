@@ -26,6 +26,11 @@ model Applicants{
 model Applicant_Survey{
   id Int @id @default(autoincrement())
   applicantId Int
-  question String
+  questionId Int
   answer String
+}
+
+model Survey_Questions{
+  id Int @id @default(autoincrement())
+  question String
 }
