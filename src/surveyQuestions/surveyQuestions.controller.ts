@@ -26,7 +26,7 @@ export class SurveyQuestionsController {
             await this.surveyQuestionService.createQuestion(validatedData)
             return {
                 statusCode: HttpStatus.CREATED,
-                message: 'Applicant created successfully',
+                message: 'Question created successfully',
             };
         })
     }
