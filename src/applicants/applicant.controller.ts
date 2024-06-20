@@ -22,7 +22,7 @@ export class ApplicantsController {
     async deleteApplicant(@Param('id') id: number) {
         await this.applicantService.deleteApplicant(id);
         return {
-            statusCode: HttpStatus.NO_CONTENT,
+            statusCode: HttpStatus.OK,
             message: 'Applicant deleted successfully',
         };
     }

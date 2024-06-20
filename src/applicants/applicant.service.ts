@@ -1,6 +1,7 @@
 import { PrismaService } from "src/prisma.service";
 import { Applicants } from "./applicants.model";
 import { Injectable } from "@nestjs/common";
+import { CreateApplicantDTO } from "src/dto/createApplicantDTO";
 
 @Injectable()
 export class ApplicantService {
@@ -16,7 +17,7 @@ export class ApplicantService {
         })
     }
 
-    async createApplicant(data: Applicants): Promise<Applicants> {
+    async createApplicant(data: CreateApplicantDTO): Promise<Applicants> {
         return this.prisma.applicants.create({
             data
         })
