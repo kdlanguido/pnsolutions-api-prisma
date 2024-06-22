@@ -1,7 +1,7 @@
+import { CreateApplicantDTO } from "src/dto/createApplicant.dto";
 import { PrismaService } from "src/prisma.service";
 import { Applicants } from "./applicants.model";
 import { Injectable } from "@nestjs/common";
-import { CreateApplicantDTO } from "../dto/createApplicantDTO";
 
 @Injectable()
 export class ApplicantService {
