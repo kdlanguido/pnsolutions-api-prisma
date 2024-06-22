@@ -1,5 +1,5 @@
-import { CreateApplicantDTO } from "./createApplicant.dto";
 import { PrismaService } from "src/prisma.service";
+import { CreateApplicantDTO } from "./createApplicant.dto";
 import { Applicants } from "./applicants.model";
 import { Injectable } from "@nestjs/common";
 
